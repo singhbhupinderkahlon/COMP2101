@@ -23,7 +23,14 @@ echo "Setuid files:"
 echo "============="
 find / -type f -executable -perm -4000 -ls 2>/dev/null | sort -k 3
 echo ""
-
+echo "Setgid files:"
+echo "============="
+find / -type f -executable -perm -2000 -ls 2>/dev/null | sort -k 6
+echo ""
+echo "The 10 largest regular files in the system:"
+echo "============="
+find / -type f -exec ls -alh 2>/dev/null --block-size=M {} \; | sort -h -k5 | tail | awk '{print $5, $3, $9}'
+echo ""
 # commands to display a second title
 # find command modified as needed
 # sort command to sort files appropriately
